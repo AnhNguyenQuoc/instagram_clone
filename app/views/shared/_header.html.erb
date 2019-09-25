@@ -1,0 +1,20 @@
+<div class="row">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo center">𝐼𝓃𝓈𝓉𝒶𝑔𝓇𝒶𝓂</a>
+      <ul class="right hide-on-med-and-down">
+        <li><%= link_to new_article_path do %><i class="material-icons">add_a_photo</i>
+          <% end %></li>
+        <li><%= link_to show_user_path(current_user) do %><i class="material-icons">assignment_ind</i>
+          <% end %></li>
+        <li>
+          <a class='dropdown-trigger' href='#' data-target='dropdown1'><i class="material-icons">arrow_drop_down</i></a>
+        </li>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "blue-text" %></li>
+        </ul>
+      </ul>
+    </div>
+  </nav>
+</div>
+

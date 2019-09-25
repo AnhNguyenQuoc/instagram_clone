@@ -1,0 +1,11 @@
+<% if current_user.like_articles.include?(article) %>
+  <%= link_to delete_like_path(article), method: :delete, remote: true do %>
+    <i class="material-icons materialize-red-text">favorite</i>
+    <span id="like_count-<%= article.id %>"><%= article.like_relation_ships.length %></span>
+  <% end %>
+<% else %>
+  <%= link_to create_like_path(article), method: :post, remote: true do %>
+    <i class="material-icons materialize-red-text">favorite_border</i>
+    <span id="like_count-<%= article.id %>"><%= article.like_relation_ships.length %></span>
+  <% end %>
+<% end %>

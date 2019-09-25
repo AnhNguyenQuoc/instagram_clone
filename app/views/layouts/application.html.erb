@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Instagram</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<div>
+  <%= yield %>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        M.AutoInit();
+        const message = '<%= notice %><%= alert %>'
+        if(message.length > 0){
+            M.toast({html: message})
+        }
+    })
+</script>
+</body>
+</html>

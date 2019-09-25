@@ -1,0 +1,29 @@
+<div>
+  <%= render 'shared/header' %>
+</div>
+<div class="row">
+  <h2 class="center-align">Create Article</h2>
+  <%= form_for @article, html: {class: "col s6 offset-s3"} do |f| %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_area :content, class: "materialize-textarea" %>
+        <%= f.label :content, "Content" %>
+      </div>
+    </div>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" multiple>
+        <%= f.file_field :images, multiple: true %>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+    <div>
+      <%= button_tag type: 'submit', class: "btn waves-effect waves-light", style: "width: 100%" do %>
+        Create
+      <% end %>
+    </div>
+  <% end %>
+</div>

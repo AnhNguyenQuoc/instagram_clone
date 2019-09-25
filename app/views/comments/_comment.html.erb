@@ -1,0 +1,3 @@
+<% article.comments.limit(3).order(created_at: :desc).each do |comment| %>
+  <p><%= comment.comment_content %></p>
+<% end %>

@@ -1,0 +1,1 @@
+$("#<%= @article.id %>").html("<%= escape_javascript(render partial: 'like_status', locals: {article: @article}) %>")

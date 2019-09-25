@@ -1,0 +1,14 @@
+<% if current_user != user %>
+  <% if current_user.following?(user) %>
+    <%= link_to relationship_path(user), method: :delete, remote: true, class: "collection-item" do %>
+      Unfollow
+    <% end %>
+  <% else %>
+    <%= link_to relationships_path(follow_id: user), method: :post, remote: true, class: "collection-item" do %>
+      Follow
+    <% end %>
+  <% end %>
+<% end %>
+<a href="#!" class="collection-item"><span class="badge"><%= user.articles.length %></span>Post</a>
+<a href="#!" class="collection-item"><span class="badge"><%= user.following.length %></span>Following</a>
+<a href="#!" class="collection-item"><span class="badge"><%= user.follower.length %></span>Follower</a>

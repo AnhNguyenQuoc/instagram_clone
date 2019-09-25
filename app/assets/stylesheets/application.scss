@@ -1,0 +1,22 @@
+@import 'materialize-css/dist/css/materialize';
+
+.text-between-line {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #918c8c;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.text-between-line span {
+  background: #fff;
+  padding: 0 10px;
+  font-size: 1rem;
+}
+
+.card-image a {
+  position: absolute;
+  z-index: 999;
+  cursor: pointer;
+  display: none;
+}
