@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.includes(:articles).find(params[:id])
+    @user = User.includes(:articles).order(created_at: :desc).find(params[:id])
   end
 
   def update_avatar

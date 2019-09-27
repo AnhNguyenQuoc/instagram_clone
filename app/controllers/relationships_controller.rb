@@ -1,5 +1,11 @@
 class RelationshipsController < ApplicationController
 
+  def show
+    @user = User.find(params[:id])
+    @following = @user.following
+    @follower = @user.follower
+  end
+
   def create
     @user = User.find(params[:follow_id])
 
@@ -17,4 +23,5 @@ class RelationshipsController < ApplicationController
       format.js { render 'create.js.erb' }
     end
   end
+
 end

@@ -15,10 +15,20 @@
         <span>File</span>
         <input type="file" multiple>
         <%= f.file_field :images, multiple: true %>
+
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" placeholder="Upload one or more files">
+        <input name="effect" hidden id="effect-info"/>
       </div>
+    </div>
+    <div class="row">
+      <div id="review-images">
+
+      </div>
+      <p class="row effect">
+      <div class="range-field"></div>
+      </p>
     </div>
     <div>
       <%= button_tag type: 'submit', class: "btn waves-effect waves-light", style: "width: 100%" do %>
@@ -27,3 +37,86 @@
     </div>
   <% end %>
 </div>
+
+<script>
+    function imageReview(input, placeToInsert) {
+        if (input.files) {
+            const html = `
+                        <div class="input-field col s12">
+                            <select id="effect">
+                              <option value="none">none</option>
+                              <option value="blur">blur</option>
+                              <option value="brightness">brightness</option>
+                              <option value="contrast">contrast</option>
+                              <option value="grayscale">grayscale</option>
+                              <option value="hue-rotate">hue-rotate</option>
+                              <option value="invert">invert</option>
+                              <option value="opacity">opacity</option>
+                              <option value="saturate">saturate</option>
+                              <option value="sepia">sepia</option>
+                            </select>
+                            <label>Effect to all image</label>
+                        </div>`
+            $('.effect').html(html);
+            $(placeToInsert).empty()
+            const filesAmount = input.files.length;
+            for (let i = 0; i < filesAmount; i++) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result)
+                        .attr('width', '200').attr('height', '200')
+                        .addClass('responsive-img').appendTo(placeToInsert)
+                }
+                reader.readAsDataURL(input.files[i])
+            }
+            $('select').formSelect();
+            $('#effect').change(function (effect) {
+                if (effect.target.value !== 'none') {
+                    if (effect.target.value === 'hue-rotate') {
+                        rangeFor(effect.target.value, 360, 10)
+                        $('#effect-percent').change(function (e) {
+                            $('img').css('filter', `${effect.target.value}(${e.target.value}deg)`)
+                            $('#effect-info').val(`${effect.target.value}(${e.target.value}deg)`)
+                        })
+                    } else if (effect.target.value === 'blur') {
+                        rangeFor(effect.target.value, 50, 5)
+                        $('#effect-percent').change(function (e) {
+                            $('img').css('filter', `${effect.target.value}(${e.target.value}px)`)
+                            $('#effect-info').val(`${effect.target.value}(${e.target.value}px)`)
+                        })
+                    } else {
+                        rangeFor(effect.target.value, 100, 100)
+                        $('#effect-percent').change(function (e) {
+                            $('img').css('filter', `${effect.target.value}(${e.target.value}%)`)
+                            $('#effect-info').val(`${effect.target.value}(${e.target.value}px)`)
+                        })
+                    }
+                } else {
+                    $('.range-field').empty();
+                }
+            })
+
+        }
+    }
+
+    function rangeFor(effect, max, value) {
+        const range = `<input type="range" id="effect-percent" min="0" max=${max} value=${value}/>`
+        $('.range-field').html(range);
+        if (effect === 'hue-rotate') {
+                $('#effect-info').val(`${effect}(${max}deg)`)
+        } else if (effect === 'blur') {
+                $('#effect-info').val(`${effect}(${max}px)`)
+        } else {
+                $('#effect-info').val(`${effect}(${max}px)`)
+        }
+    }
+
+    $(document).ready(function () {
+        $('#article_images').change(function () {
+            imageReview(this, '#review-images')
+
+        })
+
+
+    })
+</script>

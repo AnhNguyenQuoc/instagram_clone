@@ -1,0 +1,57 @@
+<div>
+  <%= render 'shared/header' %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col s6">
+      <div class="center materialize-red-text">
+        Following
+      </div>
+      <div class="row">
+        <% @following.each do |user| %>
+          <%= link_to show_user_path(user) do %>
+            <div class="col s6">
+              <div class="col s12 m7">
+                <div class="card horizontal">
+                  <div class="card-image">
+                    <%= image_tag user.avatar %>
+                  </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <p><%= username_account(user.email) %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col s6">
+      <div class="center materialize-red-text">
+        Follower
+      </div>
+      <div class="row">
+        <% @follower.each do |user| %>
+          <%= link_to show_user_path(user) do %>
+            <div class="col s6">
+              <div class="col s12 m7">
+                <div class="card horizontal">
+                  <div class="card-image">
+                    <%= image_tag user.avatar %>
+                  </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <p><%= username_account(user.email) %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

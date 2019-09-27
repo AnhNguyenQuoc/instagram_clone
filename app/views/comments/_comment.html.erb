@@ -1,3 +1,8 @@
-<% article.comments.limit(3).order(created_at: :desc).each do |comment| %>
-  <p><%= comment.comment_content %></p>
+<% article.comments.limit(3).order(created_at: :desc).reverse.each do |comment| %>
+  <p>
+    <span class="materialize-red-text">
+      <%= username_account(comment.user.email) %>:
+    </span>
+    <%= comment.comment_content %>
+  </p>
 <% end %>

@@ -10,5 +10,10 @@
   <% end %>
 <% end %>
 <a href="#!" class="collection-item"><span class="badge"><%= user.articles.length %></span>Post</a>
-<a href="#!" class="collection-item"><span class="badge"><%= user.following.length %></span>Following</a>
-<a href="#!" class="collection-item"><span class="badge"><%= user.follower.length %></span>Follower</a>
+<%= link_to show_relationships_path(user), class: "collection-item" do %>
+  <span class="badge"><%= user.following.length %></span>Following
+<% end %>
+<%= link_to show_relationships_path(user), class: "collection-item" do %>
+  <span class="badge"><%= user.follower.length %></span>Follower
+<% end %>
+

@@ -10,8 +10,4 @@ class CommentsController < ApplicationController
       format.js { render 'create.js.erb' }
     end
   end
-
-
-  private
-
 end

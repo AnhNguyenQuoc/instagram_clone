@@ -1,0 +1,10 @@
+$('.list-articles').append('<%= escape_javascript(render @articles) %>')
+$('.carousel.carousel-slider').carousel({
+    fullWidth: true
+});
+<% if @articles.next_page %>
+$('.pagination').replaceWith('<%= j paginate @articles  %>');
+<% else %>
+$(window).off('scroll');
+$('.pagination').remove();
+<% end %>

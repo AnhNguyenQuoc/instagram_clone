@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root to: 'landings#index'
+
+  get '/explore' => 'landings#explore', as: :explore_page
+
   resources :articles
   get '/user/:id' => 'users#show', as: :show_user
   put '/user/:id/avatar' => 'users#update_avatar', as: :update_avatar
@@ -9,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
   resources :comments, only: [:create]
+
+  get '/user/:id/relationships' => 'relationships#show', as: :show_relationships
 
   devise_for :users
 end
